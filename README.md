@@ -1,5 +1,17 @@
 # Blazor Headless UI Dropdown
 
+### Installation
+
+`dotnet add package Blazor.HeadlessUI.Dropdown`
+
+Program.cs
+
+`builder.Services.AddDropdownServices();`
+
+Routes.razor
+
+`<SectionOutlet SectionId="FloatingConstants.FloatingSection"/>`
+
 # Examples
 
 ```htmlinblazor
