@@ -1,0 +1,118 @@
+@inherits FocusTrapComponent
+@implements IAsyncDisposable
+
+<div id="@Id" class="@CssClassContainer">
+    <div tabindex="0" class="@CssClassWrapper">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; } = null!;
+    [Parameter, EditorRequired] public string Id { get; set; } = null!;
+
+    [Parameter] public EventCallback<bool> OnFocusChanged { get; set; }
+
+    [Parameter] public string? CssClassContainer { get; set; }
+    [Parameter] public string? CssClassWrapper { get; set; }
+
+    #region FocusTrapProps
+
+    [Parameter] public EventCallback? OnFocusPause { get; set; }
+    [Parameter] public EventCallback? OnFocusUnpause { get; set; }
+    [Parameter] public EventCallback? OnFocusPostActivate { get; set; }
+    [Parameter] public EventCallback? OnFocusPostDeactivate { get; set; }
+    [Parameter] public EventCallback? OnFocusPostPause { get; set; }
+    [Parameter] public EventCallback? OnFocusPostUnpause { get; set; }
+
+    #endregion
+
+    [Inject] public required FocusTrapJsProvider FocusTrap { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await FocusTrap.InitTrap(Id, DotObj, Settings);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    #region Handlers
+
+    [JSInvokable]
+    public override async ValueTask OnActivate()
+    {
+        await OnFocusChanged.InvokeAsync(true);
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnDeactivate()
+    {
+        await OnFocusChanged.InvokeAsync(false);
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnPause()
+    {
+        if (OnFocusPause is { HasDelegate: true } onFocusPause)
+        {
+            await onFocusPause.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnUnpause()
+    {
+        if (OnFocusUnpause is { HasDelegate: true } onFocusUnpause)
+        {
+            await onFocusUnpause.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnPostActivate()
+    {
+        if (OnFocusPostActivate is { HasDelegate: true } onFocusPostActivate)
+        {
+            await onFocusPostActivate.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnPostDeactivate()
+    {
+        if (OnFocusPostDeactivate is { HasDelegate: true } onFocusPostDeactivate)
+        {
+            await onFocusPostDeactivate.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnPostPause()
+    {
+        if (OnFocusPostPause is { HasDelegate: true } onFocusPostPause)
+        {
+            await onFocusPostPause.InvokeAsync();
+        }
+    }
+
+    [JSInvokable]
+    public override async ValueTask OnPostUnpause()
+    {
+        if (OnFocusPostUnpause is { HasDelegate: true } onFocusPostUnpause)
+        {
+            await onFocusPostUnpause.InvokeAsync();
+        }
+    }
+
+    #endregion
+
+    public async ValueTask DisposeAsync()
+    {
+        await FocusTrap.RemoveTrap(Id);
+    }
+
+}

@@ -1,0 +1,38 @@
+﻿<FloatingWrapper IsOpen="IsOpen">
+    <TriggerTemplate>
+        @TriggerTemplate(context)
+    </TriggerTemplate>
+
+    <ContentTemplate>
+        <DropdownContentWrapper Id="@context"
+                                OnFocusChanged="FocusChangeHandler"
+                                AutoActivate="true"
+                                ClickOutsideDeactivates="true"
+                                IsKeyBackward="false"
+                                IsKeyForward="false"
+                                ReturnFocusOnDeactivate="false"
+                                CssClassContainer="@CssClassContainer"
+                                CssClassWrapper="@CssClassWrapper">
+            @ContentTemplate
+        </DropdownContentWrapper>
+    </ContentTemplate>
+</FloatingWrapper>
+
+@code {
+
+    [Parameter, EditorRequired] public RenderFragment<string> TriggerTemplate { get; set; } = null!;
+    [Parameter, EditorRequired] public RenderFragment ContentTemplate { get; set; } = null!;
+
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+
+    [Parameter] public string? CssClassContainer { get; set; }
+    [Parameter] public string? CssClassWrapper { get; set; }
+
+    private Task FocusChangeHandler(bool value)
+    {
+        IsOpen = value;
+        return IsOpenChanged.InvokeAsync(value);
+    }
+
+}
