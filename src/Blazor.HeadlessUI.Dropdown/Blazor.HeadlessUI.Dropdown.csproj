@@ -5,6 +5,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>Blazor HeadlessUI dropdown</Title>
+        <Authors>adequate</Authors>
+        <Description>A lightweight and customizable headless UI Dropdown component for Blazor projects.</Description>
+        <PackageProjectUrl>https://github.com/ilsadq/Blazor.HeadlessUI.Dropdown.git</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ilsadq/Blazor.HeadlessUI.Dropdown.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Dropdown,Headless,HeadlessUI,UI,Combobox</PackageTags>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,8 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\..\README.md">
-        <Link>README.md</Link>
-      </Content>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>
