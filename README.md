@@ -12,6 +12,9 @@ Routes.razor
 
 `<SectionOutlet SectionId="FloatingConstants.FloatingSection"/>`
 
+App.razor
+`<DropdownScripts/>`
+
 # Examples
 
 ```htmlinblazor
