@@ -59,15 +59,6 @@ h1:focus {
     text-align: start;
 }
 
-.dropdown--content--container {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    box-sizing: border-box;
-    overflow: auto;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
-}
-
 .items__wrapper {
     display: flex;
     flex-direction: column;
@@ -105,4 +96,14 @@ h1:focus {
 .btn--dropdown span {
     color: #808080;
     font-size: 14px;
+}
+
+floating-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(var(--floating-left), var(--floating-top));
+    box-sizing: border-box;
+    overflow: auto;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
 }

@@ -9,8 +9,9 @@
 
 @code {
 
+    private string Id => $"F{GetHashCode()}";
+
     [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; } = null!;
-    [Parameter, EditorRequired] public string Id { get; set; } = null!;
 
     [Parameter] public EventCallback<bool> OnFocusChanged { get; set; }
 

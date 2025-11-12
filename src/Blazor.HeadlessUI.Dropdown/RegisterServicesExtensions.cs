@@ -8,7 +8,6 @@ public static class DependencyInjectionExtensions
 {
     public static void AddDropdownServices(this IServiceCollection services)
     {
-        services.AddScoped<FloatingJsProvider>();
         services.AddScoped<FocusTrapJsProvider>();
     }
 }

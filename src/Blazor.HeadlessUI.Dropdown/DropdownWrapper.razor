@@ -1,11 +1,10 @@
 ﻿<FloatingWrapper IsOpen="IsOpen">
-    <TriggerTemplate>
+    <TargetTemplate>
         @TriggerTemplate(context)
-    </TriggerTemplate>
+    </TargetTemplate>
 
     <ContentTemplate>
-        <DropdownContentWrapper Id="@context"
-                                OnFocusChanged="FocusChangeHandler"
+        <DropdownContentWrapper OnFocusChanged="FocusChangeHandler"
                                 AutoActivate="true"
                                 ClickOutsideDeactivates="true"
                                 IsKeyBackward="false"
