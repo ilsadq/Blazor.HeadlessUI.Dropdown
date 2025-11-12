@@ -4,17 +4,31 @@
 
 `dotnet add package Blazor.HeadlessUI.Dropdown`
 
-Program.cs
+---
+
+#### Program.cs
 
 `builder.Services.AddDropdownServices();`
 
-Routes.razor
+#### App.razor
 
-`<SectionOutlet SectionId="FloatingConstants.FloatingSection"/>`
+```htmlinblazor
+<SectionOutlet SectionId="FloatingConstants.FloatingSection"/>
+<DropdownScripts/>
+```
 
-App.razor
+#### app.css
 
-`<DropdownScripts/>`
+```css
+floating-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(var(--floating-left), var(--floating-top));
+}
+```
+
+---
 
 # Examples
 
@@ -67,20 +81,7 @@ App.razor
 }
 ```
 
-app.css
-
-```css
-.dropdown--content--container {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    box-sizing: border-box;
-    overflow: auto;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
-}
-
-/*...more styles*/
-```
+---
 
 # Preview
 
